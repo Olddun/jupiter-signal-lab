@@ -27,6 +27,25 @@ const [tokens, prices, quote] = await Promise.all([
   getJson(`/swap/v1/quote?inputMint=${SOL_MINT}&outputMint=${outputMint}&amount=${amountLamports}&slippageBps=50`)
 ]);
 
+const token = tokens[0] || null;
+const tokenPrice = prices[outputMint];
+const solPrice = prices[SOL_MINT];
+const routeLabels = (quote.routePlan || []).map((hop) => hop.swapInfo?.label).filter(Boolean);
+const outTokens = token ? Number(quote.outAmount) / 10 ** Number(token.decimals || 0) : 0;
+const inputSol = amountLamports / 1e9;
+const tokenUsdPrice = Number(tokenPrice?.usdPrice ?? token?.usdPrice ?? 0);
+const inputUsd = inputSol * Number(solPrice?.usdPrice || 0);
+const impliedUsd = outTokens * tokenUsdPrice;
+const quoteDrift = inputUsd ? Math.abs(impliedUsd - inputUsd) / inputUsd : null;
+const warnings = [];
+
+if (token && !token.isVerified) warnings.push("Token is not verified.");
+if (token && Number(token.organicScore || 0) < 70) warnings.push("Organic score is below 70.");
+if (token && Number(token.liquidity || 0) < 100000) warnings.push("Liquidity is below $100k.");
+if (routeLabels.length > 3) warnings.push("Route has more than three hops.");
+if (Number(quote.priceImpactPct || 0) > 1) warnings.push("Price impact is above 1%.");
+if (quoteDrift !== null && quoteDrift > 0.03) warnings.push("Quote value differs from Price API by more than 3%.");
+
 const snapshot = {
   generatedAt: new Date().toISOString(),
   input: {
@@ -34,12 +53,17 @@ const snapshot = {
     inputMint: SOL_MINT,
     outputMint
   },
-  token: tokens[0] || null,
+  token,
   prices,
+  signal: {
+    label: warnings.length ? "Caution" : "Clean",
+    quoteDrift,
+    warnings
+  },
   quote: {
     outAmount: quote.outAmount,
     priceImpactPct: quote.priceImpactPct,
-    routeLabels: (quote.routePlan || []).map((hop) => hop.swapInfo?.label).filter(Boolean)
+    routeLabels
   }
 };
 

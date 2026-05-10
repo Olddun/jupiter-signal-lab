@@ -26,8 +26,20 @@ function number(value, digits = 2) {
   return num.toLocaleString(undefined, { maximumFractionDigits: digits });
 }
 
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
 function metric(label, value, className = "") {
-  return `<div class="metric"><span>${label}</span><strong class="${className}">${value}</strong></div>`;
+  return `<div class="metric"><span>${escapeHtml(label)}</span><strong class="${className}">${escapeHtml(value)}</strong></div>`;
 }
 
 async function getJson(path) {
@@ -79,7 +91,8 @@ function scoreSignals({ token, tokenPrice, quote, solPrice }) {
 
   const inSol = Number(quote.inAmount) / 1e9;
   const outTokens = Number(quote.outAmount) / 10 ** Number(token.decimals || 0);
-  const impliedUsd = outTokens * Number(tokenPrice?.usdPrice || 0);
+  const tokenUsdPrice = Number(tokenPrice?.usdPrice ?? token.usdPrice ?? 0);
+  const impliedUsd = outTokens * tokenUsdPrice;
   const inputUsd = inSol * Number(solPrice?.usdPrice || 0);
   const quoteDrift = inputUsd ? Math.abs(impliedUsd - inputUsd) / inputUsd : 0;
   if (quoteDrift > 0.03) {
@@ -99,7 +112,7 @@ function scoreSignals({ token, tokenPrice, quote, solPrice }) {
 function renderToken(token) {
   els.token.className = "stack";
   els.token.innerHTML = [
-    `<span class="pill">${token.symbol || "UNKNOWN"}</span>`,
+    `<span class="pill">${escapeHtml(token.symbol || "UNKNOWN")}</span>`,
     metric("Name", token.name || "n/a"),
     metric("Mint", `${String(token.id).slice(0, 6)}...${String(token.id).slice(-6)}`),
     metric("Verified", token.isVerified ? "Yes" : "No", token.isVerified ? "good" : "warn"),
@@ -128,7 +141,7 @@ function renderRoute(quote, token) {
     metric("Output", `${number(outTokens, 6)} ${token.symbol}`),
     metric("Impact", `${number(quote.priceImpactPct || 0, 4)}%`),
     metric("Hops", labels.length || 0),
-    `<span class="pill">${labels.join(" -> ") || "direct"}</span>`
+    `<span class="pill">${escapeHtml(labels.join(" -> ") || "direct")}</span>`
   ].join("");
 }
 
@@ -138,7 +151,7 @@ function renderSignal(signal) {
   els.signal.innerHTML = [
     `<span class="pill ${tone}">${signal.label} / ${signal.score}</span>`,
     metric("Quote drift", `${number(signal.quoteDrift * 100, 2)}%`),
-    signal.flags.length ? signal.flags.map((flag) => `<p class="muted">${flag}</p>`).join("") : "<p class=\"good\">No major pre-trade warnings found.</p>"
+    signal.flags.length ? signal.flags.map((flag) => `<p class="muted">${escapeHtml(flag)}</p>`).join("") : "<p class=\"good\">No major pre-trade warnings found.</p>"
   ].join("");
 }
 

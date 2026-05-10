@@ -1,9 +1,5 @@
-
-> jupiter-signal-lab@1.0.0 snapshot
-> node tools/snapshot.mjs
-
 {
-  "generatedAt": "2026-05-10T21:13:38.977Z",
+  "generatedAt": "2026-05-10T22:46:10.804Z",
   "input": {
     "amountLamports": 100000000,
     "inputMint": "So11111111111111111111111111111111111111112",
@@ -13,126 +9,29 @@
     "id": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
     "name": "Jupiter",
     "symbol": "JUP",
-    "icon": "https://static.jup.ag/jup/icon.png",
     "decimals": 6,
-    "twitter": "https://twitter.com/JupiterExchange",
-    "website": "https://jup.ag",
-    "dev": "JUPhop9E8ZfdJ5FNHhxQt4uAih822Vs4QpqsWcewFbq",
-    "circSupply": 3321859853.58,
-    "totalSupply": 6862435199.403401,
-    "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
-    "holderCount": 844170,
-    "fdv": 1753478685.6931455,
-    "mcap": 848796422.9693089,
-    "usdPrice": 0.25551843255956536,
-    "priceBlockId": 418904474,
-    "liquidity": 3528808.1089389008,
-    "stats5m": {
-      "priceChange": -1.7696074371587849,
-      "holderChange": -0.006396406640891516,
-      "liquidityChange": -0.3196529355687313,
-      "volumeChange": 15.836462599856658,
-      "buyVolume": 23460.630060288597,
-      "sellVolume": 85721.22334774598,
-      "buyOrganicVolume": 1957.932691075962,
-      "sellOrganicVolume": 7145.2486744571825,
-      "numBuys": 1039,
-      "numSells": 1200,
-      "numTraders": 242,
-      "numOrganicBuyers": 21,
-      "numNetBuyers": 63
-    },
-    "stats1h": {
-      "priceChange": -5.176702720721062,
-      "holderChange": -0.005567288979018428,
-      "liquidityChange": -2.3851375030642856,
-      "volumeChange": 87.9827830045182,
-      "buyVolume": 862680.2680592345,
-      "sellVolume": 915590.0750181251,
-      "buyOrganicVolume": 123070.1074288341,
-      "sellOrganicVolume": 105501.67087125713,
-      "numBuys": 11014,
-      "numSells": 11226,
-      "numTraders": 1279,
-      "numOrganicBuyers": 47,
-      "numNetBuyers": 266
-    },
-    "stats6h": {
-      "priceChange": 3.99928536830835,
-      "holderChange": -0.009475866153390584,
-      "liquidityChange": 1.7922003931111314,
-      "volumeChange": 242.49428854095436,
-      "buyVolume": 2810310.55690842,
-      "sellVolume": 2527661.087814459,
-      "buyOrganicVolume": 680977.4128647376,
-      "sellOrganicVolume": 588022.9970310807,
-      "numBuys": 31434,
-      "numSells": 30372,
-      "numTraders": 3359,
-      "numOrganicBuyers": 156,
-      "numNetBuyers": 635
-    },
-    "stats24h": {
-      "priceChange": 2.7268060348370464,
-      "holderChange": -0.02652790048247619,
-      "liquidityChange": 3.465480380987296,
-      "volumeChange": -33.39098196231956,
-      "buyVolume": 5464216.398636208,
-      "sellVolume": 5345147.222445274,
-      "buyOrganicVolume": 900313.1204258993,
-      "sellOrganicVolume": 858214.6739712114,
-      "numBuys": 73558,
-      "numSells": 73942,
-      "numTraders": 8338,
-      "numOrganicBuyers": 311,
-      "numNetBuyers": 1849
-    },
-    "firstPool": {
-      "id": "2pspvjWWaf3dNgt3jsgSzFCNvMGPb7t8FrEYvLGjvcCe",
-      "createdAt": "2024-01-29T17:33:29Z"
-    },
-    "audit": {
-      "mintAuthorityDisabled": true,
-      "freezeAuthorityDisabled": true,
-      "topHoldersPercentage": 16.291064152924275,
-      "devMints": 1
-    },
     "organicScore": 100,
-    "organicScoreLabel": "high",
     "isVerified": true,
-    "tags": [
-      "birdeye-trending",
-      "community",
-      "moonshot-verified",
-      "strict",
-      "verified"
-    ],
-    "createdAt": "2024-06-07T10:56:42.584Z",
-    "updatedAt": "2026-05-10T21:13:30.510139458Z"
+    "liquidity": 3607559.2080142135
   },
   "prices": {
     "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN": {
-      "createdAt": "2024-06-07T10:56:42.584Z",
-      "liquidity": 3528680.582225882,
-      "usdPrice": 0.2561876344905755,
-      "blockId": 418904495,
-      "decimals": 6,
-      "priceChange24h": 2.995847200581495
+      "usdPrice": 0.2715636637214377,
+      "priceChange24h": 8.556127408802658
     },
     "So11111111111111111111111111111111111111112": {
-      "createdAt": "2024-06-05T08:55:25.527Z",
-      "liquidity": 752333356.7758434,
-      "usdPrice": 94.77442704619784,
-      "blockId": 418904497,
-      "decimals": 9,
-      "priceChange24h": 1.4893552492806212
+      "usdPrice": 96.03307454841762,
+      "priceChange24h": 2.7520955561899765
     }
   },
+  "signal": {
+    "label": "Clean",
+    "quoteDrift": 0.0011997267951485327,
+    "warnings": []
+  },
   "quote": {
-    "outAmount": "37066840",
-    "priceImpactPct": "0.0006720262906947559905641069",
-    "routeLabels": [
-      "Raydium CLMM"
-    ]
+    "outAmount": "35320580",
+    "priceImpactPct": "0",
+    "routeLabels": ["PancakeSwap", "SolFi V2", "Scorch"]
   }
 }

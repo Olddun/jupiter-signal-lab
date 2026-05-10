@@ -29,7 +29,11 @@ npm run check
 npm run snapshot
 ```
 
-The snapshot command fetches live Jupiter data for SOL to JUP and prints a compact JSON record.
+The snapshot command fetches live Jupiter data for SOL to JUP and prints a compact JSON record with the same pre-trade signal used by the browser UI. It is safe to run without a wallet or API key:
+
+```bash
+npm run snapshot -- JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN 100000000
+```
 
 ## Why This Is Useful
 
@@ -42,3 +46,5 @@ Most swap prototypes jump from token search directly to a route. This project ad
 - Does the quote value drift away from Price V3?
 
 It is deliberately simple so it can be embedded into agents, support chat tooling, or pre-wallet onboarding flows.
+
+The UI treats all token metadata and route labels as untrusted API data before rendering them, so odd token names cannot inject markup into the dashboard.

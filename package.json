@@ -1,0 +1,11 @@
+{
+  "name": "jupiter-signal-lab",
+  "version": "1.0.0",
+  "description": "A keyless Jupiter API dashboard that turns token, price, and quote data into pre-trade risk signals.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/app.js && node --check tools/snapshot.mjs",
+    "snapshot": "node tools/snapshot.mjs"
+  },
+  "license": "MIT"
+}
